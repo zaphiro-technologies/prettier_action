@@ -98,8 +98,8 @@ if _git_changed; then
   if $INPUT_DRY; then
     echo "Unpretty Files Changes:"
     _git_changes
-    if INPUT_DRY_NO_FAIL; then
-        echo "There are chaanges that won't be commited, you can use an external job to do so".
+    if $INPUT_DRY_NO_FAIL; then
+        echo "There are changes that won't be commited, you can use an external job to do so".
     else
         echo "Finishing dry-run. Exiting before committing."
         exit 1
