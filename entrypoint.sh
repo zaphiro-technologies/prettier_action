@@ -64,7 +64,8 @@ if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
             exit 1
         fi
     done
-    npm install --silent $INPUT_PRETTIER_PLUGINS
+    echo "Installing plugins: $INPUT_PRETTIER_PLUGINS"
+    npm install --save-dev $INPUT_PRETTIER_PLUGINS
 fi
 )
 
