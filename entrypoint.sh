@@ -48,9 +48,11 @@ if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
     echo "Installing prettier with plugins: $INPUT_PRETTIER_PLUGINS"
     case $INPUT_PRETTIER_VERSION in
         false)
+            ls -la
             npm install --save-dev --silent prettier $INPUT_PRETTIER_PLUGINS
             ;;
         *)
+            ls -la
             npm install --save-dev --silent prettier@$INPUT_PRETTIER_VERSION $INPUT_PRETTIER_PLUGINS
             ;;
     esac
