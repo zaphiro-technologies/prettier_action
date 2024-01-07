@@ -47,10 +47,10 @@ esac
 
 case $INPUT_PRETTIER_VERSION in
     false)
-        npm install --silent prettier
+        npm install --save-dev --silent prettier
         ;;
     *)
-        npm install --silent prettier@$INPUT_PRETTIER_VERSION
+        npm install --save-dev --silent prettier@$INPUT_PRETTIER_VERSION
         ;;
 esac
 
