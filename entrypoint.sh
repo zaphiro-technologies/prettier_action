@@ -45,15 +45,6 @@ case $INPUT_WORKING_DIRECTORY in
         ;;
 esac
 
-case $INPUT_PRETTIER_VERSION in
-    false)
-        npm install --save-dev --silent prettier
-        ;;
-    *)
-        npm install --save-dev --silent prettier@$INPUT_PRETTIER_VERSION
-        ;;
-esac
-
 # Install plugins
 if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
     for plugin in $INPUT_PRETTIER_PLUGINS; do
@@ -65,7 +56,23 @@ if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
         fi
     done
     echo "Installing plugins: $INPUT_PRETTIER_PLUGINS"
-    npm install --save-dev $INPUT_PRETTIER_PLUGINS
+    case $INPUT_PRETTIER_VERSION in
+        false)
+            npm install --save-dev --silent prettier $INPUT_PRETTIER_PLUGINS
+            ;;
+        *)
+            npm install --save-dev --silent prettier@$INPUT_PRETTIER_VERSION $INPUT_PRETTIER_PLUGINS
+            ;;
+    esac
+else
+  case $INPUT_PRETTIER_VERSION in
+      false)
+          npm install --save-dev --silent prettier
+          ;;
+      *)
+          npm install --save-dev --silent prettier@$INPUT_PRETTIER_VERSION
+          ;;
+  esac
 fi
 )
 
