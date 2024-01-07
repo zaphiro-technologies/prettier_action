@@ -35,16 +35,6 @@ _git_changes() {
 # Changing to the directory
 cd "$GITHUB_ACTION_PATH"
 
-echo "Installing prettier..."
-
-case $INPUT_WORKING_DIRECTORY in
-    false)
-        ;;
-    *)
-        cd $INPUT_WORKING_DIRECTORY
-        ;;
-esac
-
 # Install plugins
 if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
     for plugin in $INPUT_PRETTIER_PLUGINS; do
@@ -55,7 +45,7 @@ if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
             exit 1
         fi
     done
-    echo "Installing plugins: $INPUT_PRETTIER_PLUGINS"
+    echo "Installing prettier with plugins: $INPUT_PRETTIER_PLUGINS"
     case $INPUT_PRETTIER_VERSION in
         false)
             npm install --save-dev --silent prettier $INPUT_PRETTIER_PLUGINS
@@ -65,6 +55,7 @@ if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
             ;;
     esac
 else
+  echo "Installing prettier..."
   case $INPUT_PRETTIER_VERSION in
       false)
           npm install --save-dev --silent prettier
@@ -75,6 +66,14 @@ else
   esac
 fi
 )
+
+case $INPUT_WORKING_DIRECTORY in
+    false)
+        ;;
+    *)
+        cd $INPUT_WORKING_DIRECTORY
+        ;;
+esac
 
 PRETTIER_RESULT=0
 echo "Prettifying files..."
