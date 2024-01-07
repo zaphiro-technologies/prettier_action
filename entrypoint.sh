@@ -48,22 +48,20 @@ if [ -n "$INPUT_PRETTIER_PLUGINS" ]; then
     echo "Installing prettier with plugins: $INPUT_PRETTIER_PLUGINS"
     case $INPUT_PRETTIER_VERSION in
         false)
-            npm install --save-dev --silent prettier $INPUT_PRETTIER_PLUGINS
-            sudo find / -type d -name "plugin-xml"
+            npm install -g --silent prettier $INPUT_PRETTIER_PLUGINS
             ;;
         *)
-            npm install --save-dev --silent prettier@$INPUT_PRETTIER_VERSION $INPUT_PRETTIER_PLUGINS
-            sudo find / -type d -name "plugin-xml"
+            npm install -g --silent prettier@$INPUT_PRETTIER_VERSION $INPUT_PRETTIER_PLUGINS
             ;;
     esac
 else
   echo "Installing prettier..."
   case $INPUT_PRETTIER_VERSION in
       false)
-          npm install --save-dev --silent prettier
+          npm install -g --silent prettier
           ;;
       *)
-          npm install --save-dev --silent prettier@$INPUT_PRETTIER_VERSION
+          npm install -g --silent prettier@$INPUT_PRETTIER_VERSION
           ;;
   esac
 fi
